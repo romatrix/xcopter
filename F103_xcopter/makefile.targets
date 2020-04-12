@@ -1,0 +1,8 @@
+STM32CubeProgrammer := '/home/mate/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer.sh'
+ 
+flash: all
+	-@echo 'Download hex/bin to MCU Flash ...'
+	$(STM32CubeProgrammer) -c port=SWD sn=122E06013212364D434B4E00 -d $(wildcard *.elf) -Rst
+#	$(STM32CubeProgrammer) -c port=SWD -d $(wildcard *.bin) 0x8000000 -Rst
+ 
+.PHONY: flash
