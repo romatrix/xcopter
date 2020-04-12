@@ -38,7 +38,7 @@ static void print_remote_traces()
 			}
 		}
 	} else {
-		printf("[1] failed 1\n");
+		//printf("[1] failed 1\n");
 	}
 
 	printf("RT: len=%d, data=<%s>\n", pos, print_buf);

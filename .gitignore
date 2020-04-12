@@ -1,0 +1,14 @@
+F103_xcopter/Debug
+F103_xcontroller/Debug
+*.d
+*.o
+
+
+stm32f103_test2/
+f4_xcopter/
+f4_test/
+f103/
+RemoteSystemsTempFiles/
+F4_test_uart/
+.metadata/
+
