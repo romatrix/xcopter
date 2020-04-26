@@ -123,11 +123,11 @@ int main(void)
   port.CSN_PIN = GPIO_PIN_12;
   radio_comm_init(&port);
 
-//  HAL_TIM_Base_Start_IT(&htim3);
-//  HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_1);
-//  HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_2);
-//  HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_3);
-//  HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_4);
+  HAL_TIM_Base_Start_IT(&htim3);
+  //HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_1);
+  //HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_2);
+  //HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_3);
+  //HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_4);
 
   //HAL_ADC_Start_IT(&hadc1);
   HAL_ADC_Start(&hadc1);
@@ -487,7 +487,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 __weak void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* Prevent unused argument(s) compilation warning */
-	printf("adcCounter:%d\n", adcCounter);
+	printf("adcCounter:%d, A0=%d, A1=%d, A2=%d, A3=%d\n", adcCounter, adcValues[0], adcValues[1], adcValues[2], adcValues[3]);
 	adcCounter = 0;
   UNUSED(htim);
 

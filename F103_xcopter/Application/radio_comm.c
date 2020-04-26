@@ -32,7 +32,8 @@ static void print_remote_traces()
 
 	if(!Receive_Packet((u8*)recv_buf, &len, 100) || len > 0){
 		for(int j = 0; j < len; ++j){
-			char c = recv_buf[j + 1];
+			int off = j / 32;
+			char c = recv_buf[j + off];
 			if(c >= 31 || c == '\n'){
 				print_buf[pos++] = c;
 			}

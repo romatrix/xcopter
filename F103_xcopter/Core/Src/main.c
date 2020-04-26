@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "radio_comm.h"
+#include "trace_buffer.h"
 #include "settings.h"
 /* USER CODE END Includes */
 
@@ -127,6 +128,7 @@ int main(void)
   RFM70_SwitchToRxMode();
 
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
 
 
   /* USER CODE END 2 */
@@ -143,15 +145,18 @@ int main(void)
 	  if(rf.len == sizeof(RadioFrame) && rf.header == 'x'){
 		  counter++;
 		  //if(counter % 10 == 0){
-			  printf("header=%c, data[0]=%d data[1]=%d data[2]=%d data[3]=%d footer srooter pararupter\n",
+			  printf("h=%c, d[0]=%d d[1]=%d d[2]=%d d[3]=%d footer srooter pararupter\n",
 				  rf.header,
 				  rf.payload[0],
 				  rf.payload[1],
 				  rf.payload[2],
 				  rf.payload[3]);
 
-			  int val = (rf.payload[0] >> 2);
-			  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, val);
+			  int valEngine = (rf.payload[0] >> 2);
+			  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, valEngine);
+
+			  int valSteering1 = (rf.payload[1] >> 2);
+			  __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, valSteering1);
 		  //}
 	  }
   }
